@@ -13,4 +13,11 @@ public class Employee {
     @Column(name = "Id")
     private Long id;
 
+    @Column(name = "EmployeeName")
+    private String employeeName;
+
+    @Column(name = "EmployeeSalary")
+    private String employeeSalary;
+
+
 }
