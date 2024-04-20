@@ -7,6 +7,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
@@ -18,13 +20,34 @@ public class EmployeeService {
 
 
     public EmployeeDto saveEmployee(EmployeeDto employeeDto) {
-    Optional<Employee> employee = employeeRepository.findById(employeeDto.getId());
-    if (employee.isPresent()) {
-        BeanUtils.copyProperties(employeeDto, employee, "id");
-    } else {
-        employee = Optional.of(new Employee());
+        Employee employee = new Employee();
+        if (!ObjectUtils.isEmpty(employeeDto.getId())) {
+            Optional<Employee> employee1 = employeeRepository.findById(employeeDto.getId());
+            if (employee1.isPresent()) {
+                employee = employee1.get();
+                employeeDto.setId(employee.getId());
+            }
+        } else {
+            employee = new Employee();
+        }
+        BeanUtils.copyProperties(employeeDto, employee);
+        employee = employeeRepository.save(employee);
+        BeanUtils.copyProperties(employee, employeeDto);
+
+        return employeeDto;
     }
-    BeanUtils.copyProperties(employee, employeeDto);
-    return employeeDto;
+
+    public EmployeeDto findEmployeById(Long id) {
+
+        Optional<Employee> employee = employeeRepository.findById(id);
+        EmployeeDto employeeDto = new EmployeeDto();
+        Employee e  = new Employee();
+        if (employee.isPresent()) {
+            BeanUtils.copyProperties(employee.get(), e);
+        } else {
+            e = new Employee();
+        }
+        BeanUtils.copyProperties(e, employeeDto);
+        return employeeDto;
     }
 }
