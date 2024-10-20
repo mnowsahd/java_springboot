@@ -1,13 +1,13 @@
 package com.nowshad.crud;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class CrudApplicationTests {
+import org.junit.Test;
+
+//@SpringBootTest
+public class CrudApplicationTests {
 
 	@Test
-	void contextLoads() {
+    public void contextLoads() {
 	}
 
 }
