@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Employee {
+public class EmployeeRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,9 +16,6 @@ public class Employee {
     @Column(name = "EmployeeId")
     private Long employeeId;
 
-    @Column(name = "EmployeeName")
-    private String employeeName;
-
-    @Column(name = "EmployeeSalary")
-    private String employeeSalary;
+    @Column(name = "RolePermission")
+    private String rolePermission;
 }

@@ -24,8 +24,7 @@ public class EmployeeController {
         ResponseWrapper<EmployeeDto> resourceResponseWrapper = null;
         EmployeeDto employe = employeeService.saveEmployee(employeeDto);
         resourceResponseWrapper = ResourceResponseWrapper.successResult("Success", employe);
-        String res = gson.toJson(resourceResponseWrapper);
-        return res;
+        return gson.toJson(resourceResponseWrapper);
     }
 
 
@@ -34,8 +33,7 @@ public class EmployeeController {
         ResponseWrapper<EmployeeDto> resourceResponseWrapper = null;
         EmployeeDto employe = employeeService.findEmployeById(id);
         resourceResponseWrapper = ResourceResponseWrapper.successResult("Success", employe);
-        String res = gson.toJson(resourceResponseWrapper);
-        return res;
+        return gson.toJson(resourceResponseWrapper);
     }
 
 }

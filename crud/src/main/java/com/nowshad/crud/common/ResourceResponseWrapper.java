@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 public class ResourceResponseWrapper<T> implements ResponseWrapper<T>, Serializable {
 
-    private boolean seccess;
+    private boolean success;
 
     private String msg;
 
@@ -16,7 +16,7 @@ public class ResourceResponseWrapper<T> implements ResponseWrapper<T>, Serializa
     private String responseCode;
 
     public ResourceResponseWrapper(boolean b, String msg, T data, String responseCode) {
-        this.seccess = b;
+        this.success = b;
         this.msg = msg;
         this.data=data;
         this.responseCode = responseCode;
@@ -30,7 +30,7 @@ public class ResourceResponseWrapper<T> implements ResponseWrapper<T>, Serializa
 
     @Override
     public boolean isSuccess() {
-        return seccess;
+        return success;
     }
 
     @Override
