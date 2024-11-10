@@ -31,8 +31,14 @@ public class EmployeeController {
     @PostMapping("/get/{id}")
     public String getEmployee(@PathVariable Long id) {
         ResponseWrapper<EmployeeDto> resourceResponseWrapper = null;
-        EmployeeDto employe = employeeService.findEmployeById(id);
-        resourceResponseWrapper = ResourceResponseWrapper.successResult("Success", employe);
+        EmployeeDto employe = null;
+        try {
+            employe = employeeService.findEmployeById(id);
+            resourceResponseWrapper = ResourceResponseWrapper.successResult("Success", employe);
+        } catch (Exception e) {
+            resourceResponseWrapper = ResourceResponseWrapper.failResult("Failed", employe, "500");
+            throw new RuntimeException(e);
+        }
         return gson.toJson(resourceResponseWrapper);
     }
 
