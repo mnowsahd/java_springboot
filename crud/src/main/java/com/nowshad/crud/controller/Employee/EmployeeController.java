@@ -19,6 +19,11 @@ public class EmployeeController {
 
     Gson gson = new Gson();
 
+    @GetMapping("/welcome")
+    public String welcome() {
+        return "Welcome to Employee Management System";
+    }
+
     @PostMapping("/save")
     public String saveEmployee(@RequestBody EmployeeDto employeeDto) {
         ResponseWrapper<EmployeeDto> resourceResponseWrapper = null;
